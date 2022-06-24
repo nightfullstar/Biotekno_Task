@@ -1,4 +1,6 @@
-﻿using Biotekno_Task.Api.Model;
+﻿using AutoMapper;
+using Biotekno_Task.Api.Infrastructure.Interfaces;
+using Biotekno_Task.Api.Model;
 using Biotekno_Task.Api.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -11,17 +13,20 @@ namespace Biotekno_Task.Api.Controllers
     public class ProductService : ControllerBase
     {
         public IMediator _mediator;
-       
-        public ProductService(IMediator mediator)
+        public IMapper _mapper;
+        public IProductRepository _product;
+
+        public ProductService(IMediator mediator,IProductRepository product,IMapper mapper)
         {
             _mediator = mediator;
+            _product = product;
+            _mapper = mapper;
         }
         [HttpGet("GetProducts")]
         public async Task<IActionResult> GetProducts(string category)
         {
-           var query = new GetProductsQuery(category);
-            var result = await _mediator.Send(query);
-
+            var query = new GetProductsQuery(category);
+             var result = await _mediator.Send(query);
             return Ok(result);
         }
     }

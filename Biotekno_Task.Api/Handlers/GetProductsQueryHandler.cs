@@ -4,12 +4,9 @@ using Biotekno_Task.Api.Model;
 using Biotekno_Task.Api.Queries;
 using MediatR;
 
-using Microsoft.Extensions.Caching.Distributed;
-using Microsoft.Extensions.Caching.Memory;
-
 namespace Biotekno_Task.Api.Handlers
 {
-    public class GetProductsQueryHandler : IRequestHandler<GetProductsQuery, IEnumerable<Model.Product>>
+    public class GetProductsQueryHandler : IRequestHandler<GetProductsQuery, List<Model.Product>>
     {
         private readonly IProductRepository _product;
         private IMapper _mapper;
@@ -20,19 +17,19 @@ namespace Biotekno_Task.Api.Handlers
             _mapper = mapper;
         }
 
-        Task<IEnumerable<Product>> IRequestHandler<GetProductsQuery, IEnumerable<Product>>.Handle(GetProductsQuery request, CancellationToken cancellationToken)
+       async Task<List<Product>> IRequestHandler<GetProductsQuery, List<Product>>.Handle(GetProductsQuery request, CancellationToken cancellationToken)
         {
             dynamic result;
             dynamic query;
             if (request.Category != null)
             {
-                query = _product.GetProductListByCategory(request.Category);
+                query = await _product.GetProductListByCategory(request.Category);
             }
             else
             {
-                query = _product.GetAll();
+                query = _product.GetAll().ToList();
             }
-            result = _mapper.ProjectTo<IEnumerable<Model.Product>>(query);
+            result = _mapper.Map<List<Model.Product>>(query);
 
 
             return result;

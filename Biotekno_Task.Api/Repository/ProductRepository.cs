@@ -36,13 +36,13 @@ namespace Biotekno_Task.Api.Repository
            
         }
 
-        public async Task<IQueryable<Product>> GetProductListByCategory(string category)
+        public async Task<List<Product>> GetProductListByCategory(string category)
         {
             var key = "getproducts" + category;
-            var result = _cacheService.Get<IQueryable<Product>>(key);
+            var result = _cacheService.Get<List<Product>>(key);
             if(result == null)
             {
-                var query = GetAll().Where(x => x.Category == category);
+                var query = GetAll().Where(x => x.Category == category).ToList();
                 _cacheService.Set(key, query);
                 result = query;
             }

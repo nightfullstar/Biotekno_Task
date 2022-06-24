@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Biotekno_Task.Api.Queries
 {
-    public class GetProductsQuery : IRequest<IEnumerable<Product>>
+    public class GetProductsQuery : IRequest<List<Product>>
     {
         public string Category { get; }
         public GetProductsQuery(string category)

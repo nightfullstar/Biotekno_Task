@@ -8,6 +8,6 @@ namespace Biotekno_Task.Api.Infrastructure.Interfaces
         Task DeleteProduct(Product product);
         Task EditProduct(Product product);
         Task<Product> GetProductByIdAsync(int id);
-        Task<IQueryable<Product>> GetProductListByCategory(string category);
+        Task<List<Product>> GetProductListByCategory(string category);
     }
 }

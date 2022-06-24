@@ -13,14 +13,10 @@ namespace Biotekno_Task.Api.Controllers
     public class ProductService : ControllerBase
     {
         public IMediator _mediator;
-        public IMapper _mapper;
-        public IProductRepository _product;
 
-        public ProductService(IMediator mediator,IProductRepository product,IMapper mapper)
+        public ProductService(IMediator mediator)
         {
             _mediator = mediator;
-            _product = product;
-            _mapper = mapper;
         }
         [HttpGet("GetProducts")]
         public async Task<IActionResult> GetProducts(string category)

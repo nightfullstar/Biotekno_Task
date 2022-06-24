@@ -14,7 +14,7 @@ namespace Biotekno_Task.Api.Repository
 
         public IQueryable<TEntity> GetAll()
         {
-            return _context.Set<TEntity>().AsNoTracking();
+           return _context.Set<TEntity>().AsNoTracking();
         }
 
         public async Task<TEntity> GetById(int id)

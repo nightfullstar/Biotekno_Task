@@ -1,4 +1,4 @@
-﻿namespace Biotekno_Task.Api.Interfaces
+﻿namespace Biotekno_Task.Api.Infrastructure.Interfaces
 {
     public interface ICacheService
     {

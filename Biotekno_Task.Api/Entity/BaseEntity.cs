@@ -1,4 +1,4 @@
-﻿using Biotekno_Task.Api.Interfaces;
+﻿using Biotekno_Task.Api.Infrastructure.Interfaces;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Biotekno_Task.Api.Entity

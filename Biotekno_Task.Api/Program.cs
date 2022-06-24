@@ -1,11 +1,10 @@
-using AutoMapper;
 using Biotekno_Task.Api;
-using Biotekno_Task.Api.Infrastructure.Mapping;
 using Biotekno_Task.Api.Infrastructure.Providers;
-using Biotekno_Task.Api.Interfaces;
+using Biotekno_Task.Api.Infrastructure.Interfaces;
 using Biotekno_Task.Api.Repository;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Biotekno_Task.Api.Infrastructure.Mapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,14 +14,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-builder.Services.AddAutoMapper(typeof(Program).Assembly);
-var mapperConfig = new MapperConfiguration(mc =>
-{
-    mc.AddProfile(new MappingProfile());
-});
-IMapper mapper = mapperConfig.CreateMapper();
-builder.Services.AddSingleton(mapper);
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddMediatR(typeof(Program).Assembly);
 builder.Services.AddDbContext<DataContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))

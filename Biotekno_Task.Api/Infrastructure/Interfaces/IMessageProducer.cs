@@ -1,4 +1,4 @@
-﻿namespace Biotekno_Task.Api.Infrastructure.Producers
+﻿namespace Biotekno_Task.Api.Infrastructure.Interfaces
 {
     public interface IMessageProducer
     {

@@ -1,6 +1,6 @@
 ﻿using Biotekno_Task.Api.Entity;
 
-namespace Biotekno_Task.Api.Interfaces
+namespace Biotekno_Task.Api.Infrastructure.Interfaces
 {
     public interface IOrderRepository : IGenericRepository<Order>
     {

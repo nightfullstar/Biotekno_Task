@@ -1,4 +1,4 @@
-﻿using Biotekno_Task.Api.Interfaces;
+﻿using Biotekno_Task.Api.Infrastructure.Interfaces;
 using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;
 

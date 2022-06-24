@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Biotekno_Task.Api.Infrastructure.Interfaces;
+using Newtonsoft.Json;
 using RabbitMQ.Client;
 using System.Text;
 

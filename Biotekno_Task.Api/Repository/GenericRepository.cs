@@ -1,5 +1,5 @@
 ﻿using Biotekno_Task.Api.Entity;
-using Biotekno_Task.Api.Interfaces;
+using Biotekno_Task.Api.Infrastructure.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Biotekno_Task.Api.Repository
@@ -12,9 +12,9 @@ namespace Biotekno_Task.Api.Repository
             _context = context;
         }
 
-        public List<TEntity> GetAll()
+        public IQueryable<TEntity> GetAll()
         {
-            return _context.Set<TEntity>().AsNoTracking().ToList();
+            return _context.Set<TEntity>().AsNoTracking();
         }
 
         public async Task<TEntity> GetById(int id)

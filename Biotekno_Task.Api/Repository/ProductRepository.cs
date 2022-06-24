@@ -1,5 +1,5 @@
 ﻿using Biotekno_Task.Api.Entity;
-using Biotekno_Task.Api.Interfaces;
+using Biotekno_Task.Api.Infrastructure.Interfaces;
 
 namespace Biotekno_Task.Api.Repository
 {
@@ -36,13 +36,13 @@ namespace Biotekno_Task.Api.Repository
            
         }
 
-        public async Task<List<Product>> GetProductListByCategory(string category)
+        public async Task<IQueryable<Product>> GetProductListByCategory(string category)
         {
             var key = "getproducts" + category;
-            var result = _cacheService.Get<List<Product>>(key);
+            var result = _cacheService.Get<IQueryable<Product>>(key);
             if(result == null)
             {
-                var query = GetAll().Where(x => x.Category == category).ToList();
+                var query = GetAll().Where(x => x.Category == category);
                 _cacheService.Set(key, query);
                 result = query;
             }

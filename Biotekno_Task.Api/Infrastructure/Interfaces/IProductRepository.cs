@@ -1,6 +1,6 @@
 ﻿using Biotekno_Task.Api.Entity;
 
-namespace Biotekno_Task.Api.Interfaces
+namespace Biotekno_Task.Api.Infrastructure.Interfaces
 {
     public interface IProductRepository : IGenericRepository<Product>
     {
@@ -8,6 +8,6 @@ namespace Biotekno_Task.Api.Interfaces
         Task DeleteProduct(Product product);
         Task EditProduct(Product product);
         Task<Product> GetProductByIdAsync(int id);
-        Task<List<Product>> GetProductListByCategory(string category);
+        Task<IQueryable<Product>> GetProductListByCategory(string category);
     }
 }

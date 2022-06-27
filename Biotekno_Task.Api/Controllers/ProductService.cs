@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoWrapper.Wrappers;
 using Biotekno_Task.Api.Infrastructure.Interfaces;
 using Biotekno_Task.Api.Model;
 using Biotekno_Task.Api.Queries;
@@ -19,11 +20,11 @@ namespace Biotekno_Task.Api.Controllers
             _mediator = mediator;
         }
         [HttpGet("GetProducts")]
-        public async Task<IActionResult> GetProducts(string category)
+        public async Task<ApiResponse> GetProducts(string? category)
         {
             var query = new GetProductsQuery(category);
              var result = await _mediator.Send(query);
-            return Ok(result);
+            return new ApiResponse(result.Count.ToString() + " results have been loaded.",result);
         }
     }
 }

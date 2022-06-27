@@ -1,10 +1,13 @@
 using Biotekno_Task.Api;
 using Biotekno_Task.Api.Infrastructure.Providers;
 using Biotekno_Task.Api.Infrastructure.Interfaces;
+using Biotekno_Task.Api.Infrastructure.Mapper;
 using Biotekno_Task.Api.Repository;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Biotekno_Task.Api.Infrastructure.Mapper;
+using AutoWrapper;
+using Biotekno_Task.Api.Core.Interfaces;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,8 +26,13 @@ builder.Services.AddStackExchangeRedisCache(options =>
 {
     options.Configuration = "localhost:6379";
 });
-
-
+var logger = new LoggerConfiguration()
+  .ReadFrom.Configuration(builder.Configuration)
+  .Enrich.FromLogContext().WriteTo.Console()
+  .CreateLogger();
+builder.Logging.ClearProviders();
+builder.Logging.AddSerilog(logger);
+builder.Services.AddSingleton(logger);
 builder.Services.AddScoped(typeof(IMediator), typeof(Mediator));
 builder.Services.AddScoped(typeof(IOrderRepository),typeof(OrderRepository));
 builder.Services.AddScoped(typeof(IProductRepository), typeof(ProductRepository));
@@ -39,9 +47,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
+app.UseApiResponseAndExceptionWrapper(new AutoWrapperOptions { IsDebug = true,ApiVersion = "1.0.0" });
 app.MapControllers();
 
 app.Run();

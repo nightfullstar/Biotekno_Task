@@ -1,4 +1,4 @@
-﻿namespace Biotekno_Task.Api.Infrastructure.Interfaces
+﻿namespace Biotekno_Task.Api.Core.Interfaces
 {
     public interface IEntity
     {

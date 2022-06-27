@@ -1,4 +1,4 @@
-﻿namespace Biotekno_Task.Api.Entity
+﻿namespace Biotekno_Task.Api.Core.Entity
 {
     public class Product : BaseEntity
     {

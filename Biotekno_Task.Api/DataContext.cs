@@ -1,4 +1,4 @@
-﻿using Biotekno_Task.Api.Entity;
+﻿using Biotekno_Task.Api.Core.Entity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Biotekno_Task.Api

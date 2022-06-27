@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Biotekno_Task.Api.Infrastructure.Interfaces;
+using Biotekno_Task.Api.Core.Interfaces;
 using Biotekno_Task.Api.Model;
 using Biotekno_Task.Api.Queries;
 using MediatR;
@@ -10,16 +10,17 @@ namespace Biotekno_Task.Api.Handlers
     {
         private readonly IProductRepository _product;
         private IMapper _mapper;
-    
-        public GetProductsQueryHandler(IProductRepository product, IMapper mapper)
+    private Serilog.ILogger _logger;
+        public GetProductsQueryHandler(IProductRepository product, IMapper mapper, Serilog.ILogger logger)
         {
             _product = product;
             _mapper = mapper;
+            _logger = logger;
         }
 
-       async Task<List<Product>> IRequestHandler<GetProductsQuery, List<Product>>.Handle(GetProductsQuery request, CancellationToken cancellationToken)
+        async Task<List<Product>> IRequestHandler<GetProductsQuery, List<Product>>.Handle(GetProductsQuery request, CancellationToken cancellationToken)
         {
-            dynamic result;
+            List<Model.Product> result;
             dynamic query;
             if (request.Category != null)
             {
@@ -29,8 +30,9 @@ namespace Biotekno_Task.Api.Handlers
             {
                 query = _product.GetAll().ToList();
             }
+            
             result = _mapper.Map<List<Model.Product>>(query);
-
+            _logger.Debug(result.Count.ToString() + "results came in and mapped.");
 
             return result;
         }

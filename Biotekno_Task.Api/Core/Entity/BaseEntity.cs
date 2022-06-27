@@ -1,7 +1,7 @@
-﻿using Biotekno_Task.Api.Infrastructure.Interfaces;
+﻿using Biotekno_Task.Api.Core.Interfaces;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Biotekno_Task.Api.Entity
+namespace Biotekno_Task.Api.Core.Entity
 {
     public class BaseEntity : IEntity
     {

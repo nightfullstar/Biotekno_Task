@@ -1,6 +1,6 @@
-﻿using Biotekno_Task.Api.Entity;
+﻿using Biotekno_Task.Api.Core.Entity;
 
-namespace Biotekno_Task.Api.Infrastructure.Interfaces
+namespace Biotekno_Task.Api.Core.Interfaces
 {
     public interface IGenericRepository<TEntity> where TEntity : BaseEntity
     {

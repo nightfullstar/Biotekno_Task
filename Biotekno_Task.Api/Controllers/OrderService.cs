@@ -1,4 +1,6 @@
-﻿using Biotekno_Task.Api.Model;
+﻿using AutoWrapper.Wrappers;
+using Biotekno_Task.Api.Model;
+using Biotekno_Task.Api.Requests;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,10 +17,13 @@ namespace Biotekno_Task.Api.Controllers
         {
             _mediator = mediator;
         }
-        [HttpPost(Name = "CreateOrder")]
-        public async Task<IActionResult> CreateOrder([FromBody] JObject orderdata)
+        [HttpGet("OrderRequest")]
+        public async Task<ApiResponse> CreateOrder([FromBody] OrderRequest request)
         {
-            return null;
+            var query = new CreateOrderRequest(request);
+            var result = await _mediator.Send(query);
+
+            return result;
         }
      
     }

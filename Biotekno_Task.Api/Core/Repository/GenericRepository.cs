@@ -1,5 +1,5 @@
-﻿using Biotekno_Task.Api.Entity;
-using Biotekno_Task.Api.Infrastructure.Interfaces;
+﻿using Biotekno_Task.Api.Core.Entity;
+using Biotekno_Task.Api.Core.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Biotekno_Task.Api.Repository

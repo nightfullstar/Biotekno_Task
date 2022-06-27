@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Biotekno_Task.Api.Entity
+namespace Biotekno_Task.Api.Core.Entity
 {
     public class OrderDetail : BaseEntity
     {

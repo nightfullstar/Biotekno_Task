@@ -6,7 +6,7 @@ namespace Biotekno_Task.Api.Repository
 {
     public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : BaseEntity
     {
-        private readonly DataContext _context;
+        private DataContext _context;
         public GenericRepository(DataContext context)
         {
             _context = context;

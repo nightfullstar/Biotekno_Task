@@ -20,6 +20,12 @@ namespace Biotekno_Task.Api.Infrastructure.Mapper
 
             CreateMap<IQueryable<Core.Entity.Product>, IEnumerable<Model.Product>>().ReverseMap();
 
+            CreateMap<OrderRequest, Order>()
+                .ForMember(dest => dest.CustomerName, act => act.MapFrom(src => src.CustomerName))
+                .ForMember(dest => dest.CustomerGsm, act => act.MapFrom(src => src.CustomerGSM))
+                .ForMember(dest => dest.CustomerEmail, act => act.MapFrom(src => src.CustomerEmail))
+                .ReverseMap();
+
         }
     }
 }

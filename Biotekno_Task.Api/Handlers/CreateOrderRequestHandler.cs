@@ -24,7 +24,7 @@ namespace Biotekno_Task.Api.Handlers
         public Task<ApiResponse> Handle(CreateOrderRequest request, CancellationToken cancellationToken)
         {
 
-            throw new NotImplementedException();
+          _order.AddOrder()
         }
     }
 }
